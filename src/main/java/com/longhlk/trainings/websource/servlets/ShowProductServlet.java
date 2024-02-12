@@ -31,6 +31,6 @@ public class ShowProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
-        req.getRequestDispatcher("showProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("showProduct.jsp").include(req, resp);
     }
 }

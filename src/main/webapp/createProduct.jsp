@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-
+    <jsp:include page="header.jsp" />
+    <h1>CREATE</h1>
 </body>
 </html>

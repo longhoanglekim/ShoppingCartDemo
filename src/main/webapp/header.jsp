@@ -11,6 +11,9 @@
     <title>header</title>
 </head>
 <body>
-<a href="showProduct">Show product</a> | <a href="home">Home</a>
+    <form action="showProduct" method="post">
+        <input type="submit" value="Show products"></form>
+    <form action="home" method="post">
+        <input type="submit" value="Home"></form>
 </body>
 </html>

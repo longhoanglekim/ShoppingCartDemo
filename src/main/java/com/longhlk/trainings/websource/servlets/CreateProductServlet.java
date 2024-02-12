@@ -1,5 +1,6 @@
 package com.longhlk.trainings.websource.servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,5 +15,8 @@ public class CreateProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Create product");
         //Todo: Complete this function
+
+        RequestDispatcher rd = req.getRequestDispatcher("createProduct.jsp");
+        rd.forward(req, resp);
     }
 }

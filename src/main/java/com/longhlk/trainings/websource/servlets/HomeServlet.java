@@ -18,7 +18,6 @@ public class HomeServlet extends HttpServlet {
         System.out.println("HomeServlet doGet");
         List<Product> products = ProductDao.getAllProducts();
         req.setAttribute("products", products);
-        req.setAttribute("message", "Helloooooo!");
     }
 
     @Override
