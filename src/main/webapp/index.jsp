@@ -5,7 +5,7 @@
     <title>Charlotte</title>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+
 <jsp:include page="login.jsp" />
 
 </body>

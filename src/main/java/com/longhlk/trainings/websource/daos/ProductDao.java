@@ -54,14 +54,6 @@ public class ProductDao {
                 product.setPrice(res.getBigDecimal("price"));
                 products.add(product);
             }
-            if (products != null) {
-                System.out.println("Products found");
-                for (Product product : products) {
-                    System.out.println(product.getName());
-                }
-            } else {
-                System.out.println("No products found");
-            }
             return products;
         } catch (SQLException e) {
             e.printStackTrace();

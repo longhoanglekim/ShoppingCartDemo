@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Charlotte</title>
+    <title>show</title>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -39,8 +39,8 @@
     </table>
 </form>
 <br/>
-<form id="createProductAction" action="createProduct" method="post" >
-    <button type="submit" name="createButton" form="createProductAction" value="Create product">Create</button>
+<form id="createProductAction" action="createProduct" method="get" >
+    <button type="submit" name="createButton" form="createProductAction">Sell your product</button>
 </form>
 
 </body>

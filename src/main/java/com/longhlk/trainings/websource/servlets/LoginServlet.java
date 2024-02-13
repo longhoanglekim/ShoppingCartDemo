@@ -29,18 +29,20 @@ public class LoginServlet extends HttpServlet {
                 res = statement.executeQuery("SELECT * FROM web_account WHERE email ='" + email + "' AND password = '" + password + "'");
 
                 if (res.next()) {
+                    System.out.println("Login success");
                     rd = req.getRequestDispatcher("/home");
                     rd.forward(req, resp);
-                    System.out.println("Login success");
                 } else {
                     rd = req.getRequestDispatcher("login.jsp");
                     rd.forward(req, resp);
                     System.out.println("Invalid password");
+                    //Todo:Complete the front-end
                 }
             } else {
                 rd = req.getRequestDispatcher("login.jsp");
                 rd.forward(req, resp);
                 System.out.println("Invalid email");
+                //Todo:Complete the front-end
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

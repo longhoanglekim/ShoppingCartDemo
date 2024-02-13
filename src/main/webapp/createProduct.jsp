@@ -8,10 +8,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>sell</title>
 </head>
 <body>
     <jsp:include page="header.jsp" />
     <h1>CREATE</h1>
+    <form action="createProduct" method="post">
+        <table>
+            <tr>
+                <td>Name of the product:</td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td>Description of the product:</td>
+                <td>
+                    <input type="text" name="description">
+                </td>
+            </tr>
+            <tr>
+                <td>Price of the product:</td>
+                <td>
+                    <input type="text" name="price">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Sell">
+                </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

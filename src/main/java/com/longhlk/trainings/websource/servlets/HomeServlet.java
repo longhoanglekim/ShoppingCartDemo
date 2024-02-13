@@ -16,14 +16,18 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("HomeServlet doGet");
-        List<Product> products = ProductDao.getAllProducts();
-        req.setAttribute("products", products);
+        loadPage(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
         System.out.println("HomeServlet doPost");
+        loadPage(req, resp);
+    }
+
+    private void loadPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Product> products = ProductDao.getAllProducts();
+        req.setAttribute("products", products);
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 }

@@ -21,16 +21,15 @@ public class ShowProductServlet extends HttpServlet {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Product> products = ProductDao.getAllProducts();
-        request.setAttribute("products", products);
-
-        request.getRequestDispatcher("showProduct.jsp").forward(request, response);
+        req.setAttribute("products", products);
+        req.getRequestDispatcher("showProduct.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
-        req.getRequestDispatcher("showProduct.jsp").include(req, resp);
     }
 }
