@@ -13,11 +13,11 @@
     <title>show</title>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <h1>Product List</h1>
 
 <form>
-    <table>
+    <table border="1">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -25,21 +25,28 @@
             <th>Price</th>
             <!-- Add more columns if needed -->
         </tr>
-        <c:set var="products" value="${requestScope.products}" />
+        <c:set var="products" value="${requestScope.products}"/>
         <!-- Iterate over the list of products using JSTL forEach -->
         <c:forEach var="product" items="${products}">
             <tr>
+<%--                <button type="submit" name="productButton" form="productAction" value="${product.id}">View</button>--%>
                 <td>${product.id}</td>
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
+                <td>
+                    <form id="productAction" action="watchProduct" method="get">
+                        <button type="submit" name="productButton" form="productAction" value="${product.id}">View</button>
+                    </form>
+                </td>
                 <!-- Add more columns if needed -->
             </tr>
+
         </c:forEach>
     </table>
 </form>
-<br/>
-<form id="createProductAction" action="createProduct" method="get" >
+
+<form id="createProductAction" action="createProduct" method="get">
     <button type="submit" name="createButton" form="createProductAction">Sell your product</button>
 </form>
 

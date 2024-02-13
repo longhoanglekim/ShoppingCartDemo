@@ -11,18 +11,26 @@ import java.util.List;
 
 public class ProductDao {
 
-    public void addProduct(Product product) {
+    public static boolean addProduct(Product product) {
         // Add product
         Connection connection = ConnectionUtil.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement("insert into product values (?,?,?,?,?)");
-            statement.setInt(1, product.getId());
-            statement.setString(2, product.getName());
-            statement.setString(3, product.getDescription());
-            statement.setBigDecimal(4, product.getPrice());
+            PreparedStatement statement = connection.prepareStatement("insert into product (name,description,price) values (?,?,?)");
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setBigDecimal(3, product.getPrice());
+            int res = statement.executeUpdate();
+            if (res > 0) {
+                System.out.println("Product added successfully");
+                return true;
+            } else {
+                System.out.println("Product not added");
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public void updateProduct(Product product) {

@@ -8,6 +8,4 @@ import java.util.List;
 @Getter
 @Setter
 public class UserOrderDao {
-    private List<UserOrder> userOrders;
-
 }

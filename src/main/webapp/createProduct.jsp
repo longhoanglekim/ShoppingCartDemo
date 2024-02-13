@@ -13,6 +13,14 @@
 <body>
     <jsp:include page="header.jsp" />
     <h1>CREATE</h1>
+    <div id="notification" style="display: none; color: green;">Product added successfully!</div>
+    <% Boolean productAdded = (Boolean) request.getAttribute("productAdded"); %>
+    <script>
+        var productAdded = <%= productAdded %>;
+        if (productAdded) {
+            document.getElementById('notification').style.display = 'block';
+        }
+    </script>
     <form action="createProduct" method="post">
         <table>
             <tr>

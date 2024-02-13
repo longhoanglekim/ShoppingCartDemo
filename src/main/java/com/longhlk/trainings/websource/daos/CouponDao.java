@@ -12,8 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CouponDao {
-    List<Coupon> coupons = new ArrayList<>();
-    public void addCoupon(Coupon coupon) {
+    public static boolean addCoupon(Coupon coupon) {
         // Save coupon to database
         Connection connection = ConnectionUtil.getConnection();
         try {
@@ -25,14 +24,16 @@ public class CouponDao {
             statement.setString(4, coupon.getExpDate());
             int res = statement.executeUpdate();
             if (res == 1) {
-                coupons.add(coupon);
                 System.out.println("Coupon saved successfully");
+                return true;
             } else {
                 System.out.println("Failed to save coupon");
+                return false;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     public void updateCoupon(Coupon coupon) {
