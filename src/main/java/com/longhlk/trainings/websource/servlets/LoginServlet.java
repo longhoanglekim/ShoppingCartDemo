@@ -1,7 +1,5 @@
 package com.longhlk.trainings.websource.servlets;
 
-import com.longhlk.trainings.websource.daos.ProductDao;
-import com.longhlk.trainings.websource.models.Product;
 import com.longhlk.trainings.websource.utils.ConnectionUtil;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,9 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/login", loadOnStartup = 0)
+@WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

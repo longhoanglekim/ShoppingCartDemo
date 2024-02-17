@@ -8,9 +8,19 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @NoArgsConstructor
+
 public class Product {
     private int id;
     private String name;
     private String description;
     private BigDecimal price;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product) {
+            Product product = (Product) obj;
+            return this.id == product.id;
+        }
+        return false;
+    }
 }

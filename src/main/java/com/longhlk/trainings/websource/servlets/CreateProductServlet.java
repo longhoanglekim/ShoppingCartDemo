@@ -33,7 +33,7 @@ public class CreateProductServlet extends HttpServlet {
         product.setPrice(price);
         if (ProductDao.addProduct(product)) {
             req.setAttribute("productAdded", true);
-            //resp.sendRedirect("showProduct");
+            resp.sendRedirect("showProduct");
         } else {
             resp.sendRedirect("createProduct");
         }

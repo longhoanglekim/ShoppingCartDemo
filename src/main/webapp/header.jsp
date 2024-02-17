@@ -11,11 +11,11 @@
     <title>header</title>
 </head>
 <body>
-<%--    <form action="showProduct" method="post">--%>
-<%--        <input type="submit" value="Show products"></form>--%>
-<%--    <form action="home" method="post">--%>
-<%--        <input type="submit" value="Home"></form>--%>
-<a href="showProduct" style="margin-right: 20px">Show</a>| <a href="home" style="margin-left: 20px">Home</a>
+
+<a href="showProduct" style="margin-right: 20px">Show</a>|
+<a href="home" style="margin-left: 20px; margin-right: 20px">Home</a>|
+<a href="findProduct" style="margin-left: 20px; margin-right: 20px">Find</a>|
+<a href="createProduct" style="margin-left: 20px; margin-right: 20px">Create</a>
 
 </body>
 </html>
