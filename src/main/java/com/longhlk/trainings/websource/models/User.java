@@ -7,10 +7,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     private int id;
     private String email;
     private String password;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

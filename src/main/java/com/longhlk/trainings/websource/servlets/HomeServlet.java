@@ -26,8 +26,11 @@ public class HomeServlet extends HttpServlet {
     }
 
     private void loadPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //String user = (String) req.getSession().getAttribute("user");
+        //System.out.println("User: " + user);
         List<Product> products = ProductDao.getAllProducts();
         req.setAttribute("products", products);
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
+
 }
