@@ -1,5 +1,6 @@
 package com.longhlk.trainings.websource.servlets;
 
+import com.longhlk.trainings.websource.daos.WebAccountDAO;
 import com.longhlk.trainings.websource.utils.ConnectionUtil;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -26,28 +27,21 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         Connection connection = ConnectionUtil.getConnection();
         try {
-            Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM web_account WHERE email = '" + email + "'");
-
-            System.out.println("Find email");
-            RequestDispatcher rd = null;
-            if (res.next()) {
-                res = statement.executeQuery("SELECT * FROM web_account WHERE email ='" + email + "' AND password = '" + password + "'");
-                if (res.next()) {
+            if (WebAccountDAO.findUser(email)) {
+                if (WebAccountDAO.checkPassword(email, password)) {
                     System.out.println("Login success");
+                    req.getSession().setAttribute("userName", WebAccountDAO.getName(email));
                     req.getSession().setAttribute("user", email);
-                    rd = req.getRequestDispatcher("/home");
-                    rd.forward(req, resp);
+                    resp.sendRedirect("home");
                 } else {
-                    rd = req.getRequestDispatcher("login.jsp");
-                    rd.forward(req, resp);
                     System.out.println("Invalid password");
-                    //Todo:Complete the front-end
+                    req.setAttribute("message", "Invalid password");
+                    req.getRequestDispatcher("login.jsp").forward(req, resp);
                 }
-            } else  {
-                rd = req.getRequestDispatcher("login.jsp");
-                rd.forward(req, resp);
+            } else {
                 System.out.println("Invalid email");
+                req.setAttribute("message", "Invalid email");
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

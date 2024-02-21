@@ -13,7 +13,7 @@
     <title>Login</title>
 </head>
 <body>
-
+<jsp:include page="header.jsp" />
 <h1>Login</h1>
 <form action="login" method="post">
     <p>Email:</p>

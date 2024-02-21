@@ -7,16 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-@WebServlet(urlPatterns = "/buyProduct")
-public class BuyProductServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/showInfo")
+public class ShowInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("BuyProductServlet doGet");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("BuyProductServlet doPost");
+        req.getRequestDispatcher("showInfo.jsp").forward(req, resp);
+        System.out.println("ShowInfoServlet doGet");
 
     }
 }

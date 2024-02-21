@@ -12,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
+    <jsp:include page="header.jsp"/>
     <h1>Find Product</h1>
     <form action="findProduct" method="post">
         <table border="1">
@@ -29,30 +30,20 @@
             </tr>
         </table>
     </form>
-
-    <%--<c:if test="${not empty requestScope.foundProduct}">
-        <h2>Product Details</h2>
-        <table border="1">
-            <tr>
-                <td>Id: ${requestScope.foundProduct.id}</td>
-                <td>Name: ${requestScope.foundProduct.name}</td>
-                <td>Description: ${requestScope.foundProduct.description}</td>
-                <td>Price: ${requestScope.foundProduct.price}</td>
-            </tr>
-        </table>
-    </c:if>--%>
-
     <c:if test="${not empty requestScope.productList}">
         <h2>Product Details</h2>
-        <table border="1">
-            <c:forEach var="product" items="${requestScope.productList}" >
-                <tr>
-                    <td>Name: ${product.name}</td> <!-- change here -->
-                    <td>Description: ${product.description}</td> <!-- change here -->
-                    <td>Price: ${product.price}</td> <!-- change here -->
-                </tr>
-            </c:forEach>
-        </table>
+        <form action="buyProduct" method="post">
+            <table border="1">
+                <c:forEach var="product" items="${requestScope.productList}" >
+                    <tr>
+                        <td>Name: ${product.name}</td> <!-- change here -->
+                        <td>Description: ${product.description}</td> <!-- change here -->
+                        <td>Price: ${product.price}</td> <!-- change here -->
+                        <td><button type="submit" value="buy">Buy</button> <!-- change here --> </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </form>
     </c:if>
 </body>
 </html>
