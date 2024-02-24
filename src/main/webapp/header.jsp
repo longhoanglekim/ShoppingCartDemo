@@ -15,10 +15,8 @@
 <a href="showProduct" style="margin-right: 20px">Show</a>|
 <a href="home" style="margin-left: 20px; margin-right: 20px">Home</a>|
 <a href="findProduct" style="margin-left: 20px; margin-right: 20px">Find</a>|
-<a href="createProduct" style="margin-left: 20px; margin-right: 20px">Create</a>
-<a href="buyProduct" style="margin-left: 20px; margin-right: 20px">Buy</a>|
-<a href="showOrder" style="margin-left: 20px">Your Order</a>
-<a href="showInfo" style="margin-left: 100px">Your Info</a>
-
+<a href="createProduct" style="margin-left: 20px; margin-right: 20px">Create</a>|
+<a href="showOrder" style="margin-left: 100px;margin-right: 20px">Your Order</a>|
+<a href="showInfo" style="margin-left: 20px">Your Info</a>
 </body>
 </html>

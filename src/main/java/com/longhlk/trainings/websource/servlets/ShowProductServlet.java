@@ -23,8 +23,11 @@ public class ShowProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = ProductDao.getAllProducts();
-        req.setAttribute("products", products);
+        if (req.getSession().getAttribute("products") == null) {
+            List<Product> products = ProductDao.getAllProducts();
+            req.getSession().setAttribute("products", products);
+        }
+
         req.getRequestDispatcher("showProduct.jsp").forward(req, resp);
     }
 

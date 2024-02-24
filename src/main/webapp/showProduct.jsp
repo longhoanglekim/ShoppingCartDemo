@@ -25,7 +25,7 @@
             <th>Price</th>
             <!-- Add more columns if needed -->
         </tr>
-        <c:set var="products" value="${requestScope.products}"/>
+        <c:set var="products" value="${sessionScope.products}"/>
         <!-- Iterate over the list of products using JSTL forEach -->
         <c:forEach var="product" items="${products}">
             <tr>

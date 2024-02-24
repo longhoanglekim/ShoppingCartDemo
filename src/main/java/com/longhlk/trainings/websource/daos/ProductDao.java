@@ -125,7 +125,22 @@ public class ProductDao {
         return products;
     }
 
-
+    public static void deleteProduct(int id) {
+        // Delete product
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from product where id = ?");
+            statement.setInt(1, id);
+            int res = statement.executeUpdate();
+            if (res > 0) {
+                System.out.println("Product deleted successfully");
+            } else {
+                System.out.println("Product not deleted");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
 
