@@ -35,9 +35,9 @@
                 <td>${product.description}</td>
                 <td>${product.price}</td>
                 <td>
-                    <form id="productAction" action="watchProduct" method="get">
-                        <button type="submit" name="productButton" form="productAction" value="${product.id}">View</button>
-                    </form>
+<%--                    <form id="productAction" action="watchProduct" method="get">--%>
+<%--                        <button type="submit" name="productButton" form="productAction" value="${product.id}">View</button>--%>
+<%--                    </form>--%>
                 </td>
                 <!-- Add more columns if needed -->
             </tr>

@@ -12,6 +12,27 @@ import java.util.List;
 
 public class ProductDao {
 
+    public static Product findProductByID(int id) {
+        // Find product by id
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from product where id = ?");
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            if (res.next()) {
+                Product product = new Product();
+                product.setId(res.getInt("id"));
+                product.setName(res.getString("name"));
+                product.setDescription(res.getString("description"));
+                product.setPrice(res.getBigDecimal("price"));
+                return product;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static boolean addProduct(Product product) {
         // Add product
         Connection connection = ConnectionUtil.getConnection();
@@ -50,55 +71,44 @@ public class ProductDao {
 
 
     public static List<Product> getFoundProducts(String name, BigDecimal price) {
-        Connection connection = ConnectionUtil.getConnection();
-        if (name != null && price != null) {
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "select * from product where  name=? and price =?");
-                preparedStatement.setString(1, name);
-                preparedStatement.setBigDecimal(2, price);
-                return selectProductQuery(preparedStatement);
-            } catch (SQLException e) {
-                System.out.println("Error at sqlFoundProduct");
-                e.printStackTrace();
-            }
-        }
+        StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1");
+        List<Object> parameters = new ArrayList<>();
         if (name != null) {
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "select * from product where  name=?");
-                preparedStatement.setString(1, name);
-                return selectProductQuery(preparedStatement);
-            } catch (SQLException e) {
-                System.out.println("Error at sqlFoundProduct");
-                e.printStackTrace();
-            }
+            sql.append(" AND name = ?");
+            parameters.add(name);
         }
         if (price != null) {
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "select * from product where price =?");
-                preparedStatement.setBigDecimal(1, price);
-                return selectProductQuery(preparedStatement);
-            } catch (SQLException e) {
-                System.out.println("Error at sqlFoundProduct");
-                e.printStackTrace();
-            }
+            sql.append(" AND price = ?");
+            parameters.add(price);
         }
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < parameters.size(); i++) {
+                preparedStatement.setObject(i + 1, parameters.get(i));
+            }
+
+            return selectProductQuery(preparedStatement);
+        } catch (SQLException e) {
+            System.out.println("Error at sqlFoundProduct");
+            e.printStackTrace();
+        }
+
         System.out.println("You haven't type the properties!");
         return null;
     }
 
     private static List<Product> selectProductQuery(PreparedStatement preparedStatement) throws SQLException {
-        ResultSet resultSet = preparedStatement.executeQuery();
         List<Product> products = new ArrayList<>();
-        while (resultSet.next()) {
-            Product product = new Product();
-            product.setId(resultSet.getInt(1));
-            product.setName(resultSet.getString(2));
-            product.setDescription(resultSet.getString(3));
-            product.setPrice(resultSet.getBigDecimal(4));
-            products.add(product);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt(1));
+                product.setName(resultSet.getString(2));
+                product.setDescription(resultSet.getString(3));
+                product.setPrice(resultSet.getBigDecimal(4));
+                products.add(product);
+            }
         }
         return products;
     }

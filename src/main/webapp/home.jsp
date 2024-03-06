@@ -15,5 +15,6 @@
     <jsp:include page="header.jsp" />
     <c:set var="userName" value="${sessionScope.userName}" />
     <h1>Welcome to Charlotte,${userName}</h1>
+    <a href="createProduct">Create Product</a>
 </body>
 </html>

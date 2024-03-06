@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/home", loadOnStartup = 1)
@@ -44,10 +45,10 @@ public class HomeServlet extends HttpServlet {
             String balance = WebAccountDAO.getBalance(user).toString();
             balance = balance.concat("$");
             req.getSession().setAttribute("balance", balance);
-            System.out.println("Balance: " + balance);
+            //System.out.println("Balance: " + balance);
         } else {
             System.out.println("Balance not null");
         }
-        //System.out.println(OrderProductDao.getCurrentOrderID());
+
     }
 }

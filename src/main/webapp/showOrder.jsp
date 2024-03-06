@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: HD
@@ -13,5 +14,8 @@
 <body>
     <jsp:include page="header.jsp"/>
     <h1>Order</h1>
+    <c:forEach items="${sessionScope.orderProducts}" var="order">
+        <p>${order.id} - ${order.name} - ${order.price}</p>
+    </c:forEach>
 </body>
 </html>

@@ -26,7 +26,6 @@ public class FindProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        //System.out.println("Name...........");
         String priceParam = req.getParameter("price");
         BigDecimal price = null;
         if (priceParam != null && !priceParam.isEmpty()) {
@@ -39,10 +38,12 @@ public class FindProductServlet extends HttpServlet {
         }
         //System.out.println("Price...........");
         List<Product> productList = ProductDao.getFoundProducts(name, price);
-        //System.out.println("Get the found product list!");
+        System.out.println("Product list size: " + productList.size());
+        //System.out.println("Get the found product list!");'
         req.setAttribute("productList", productList); // change here
+
         RequestDispatcher rd = req.getRequestDispatcher("findProduct.jsp");
-        rd.include(req, resp);
+        rd.forward(req, resp);
         System.out.println("FindProductServlet doPost");
     }
 

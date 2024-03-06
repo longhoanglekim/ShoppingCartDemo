@@ -47,14 +47,16 @@
 </form>
 <c:if test="${not empty requestScope.productList}">
     <h2>Product Details</h2>
-    <form action="buyProduct" method="post">
+
         <table border="1">
             <c:forEach var="product" items="${requestScope.productList}" varStatus="loop">
                 <tr>
                     <td>Name: ${product.name}</td> <!-- change here -->
                     <td>Description: ${product.description}</td> <!-- change here -->
                     <td>Price: ${product.price}</td> <!-- change here -->
-                    <td><button  onclick="callServlet(${product.id})" type="submit" value="buy">Buy</button> <!-- change here --> </td>
+                    <td> <form action="buyProduct" method="get"/>
+                        <button  onclick="callServlet(${product.id})" type="submit" value="buy">Buy</button> <!-- change here -->
+                    </td>
                 </tr>
             </c:forEach>
         </table>
